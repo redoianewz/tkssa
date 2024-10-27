@@ -1786,28 +1786,42 @@
                     </p>
                   </div>
 
-                  <div class="product-packege">
-                    <div class="product-title">
-                      <h4>Weight</h4>
-                    </div>
-                    <ul class="select-packege">
-                      <li>
-                        <a href="javascript:void(0)" class="active">1/2 KG</a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">1 KG</a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">1.5 KG</a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">Red Roses</a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">With Pink Roses</a>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="product-packege">
+  <div class="product-title">
+    <h4>Taille</h4>
+  </div>
+  <ul class="select-packege size-options">
+    <li><a href="javascript:void(0)" data-value="M">M</a></li>
+    <li><a href="javascript:void(0)" data-value="L">L</a></li>
+    <li><a href="javascript:void(0)" data-value="XL">XL</a></li>
+    <li><a href="javascript:void(0)" data-value="2XL">2XL</a></li>
+    <li><a href="javascript:void(0)" data-value="3XL">3XL</a></li>
+  </ul>
+</div>
+
+<div class="product-packege">
+  <div class="product-title">
+    <h4>Color 1</h4>
+  </div>
+  <ul class="select-packege color1-options">
+    <li style="background-color: rgb(145, 4, 4);"><a href="javascript:void(0)" data-value="red">red</a></li>
+    <li style="background-color: rgb(0, 0, 84);"><a href="javascript:void(0)" data-value="Bluemary">Bluemary</a></li>
+    <li style="background-color: rgb(28, 74, 50);"><a href="javascript:void(0)" data-value="Green">Green</a></li>
+  </ul>
+</div>
+
+<div class="product-packege">
+  <div class="product-title">
+    <h4>Color 2</h4>
+  </div>
+  <ul class="select-packege color2-options">
+    <li style="background-color: rgb(145, 4, 4);"><a href="javascript:void(0)" data-value="red">red</a></li>
+    <li style="background-color: rgb(0, 0, 84);"><a href="javascript:void(0)" data-value="Bluemary">Bluemary</a></li>
+    <li style="background-color: rgb(28, 74, 50);"><a href="javascript:void(0)" data-value="Green">Green</a></li>
+  </ul>
+</div>
+
+
 
                   <div
                     class="time deal-timer product-deal-timer mx-md-0 mx-auto"
@@ -1870,7 +1884,7 @@
                           class="form-control input-number qty-input"
                           type="text"
                           name="quantity"
-                          value="0"
+                          value="2"
                         />
                         <button
                           type="button"
@@ -4172,9 +4186,17 @@
                       <option value="0">1 KG</option>
                       <option value="1.5">1/5 KG</option>
                       <option value="red">Red Roses</option>
-                      <option value="pink">With Pink Roses</option>
                     </select>
                   </div>
+                  <div class="select-color">
+                    <h4>Cake Color :</h4>
+                    <select class="form-select select-form-color">
+                      <option selected>Select Color</option>
+                      <option value="1.2">Red</option>
+                      <option value="0">White</option>
+                      <option value="1.5">Black</option>
+                      <option value="red">Blue</option>
+                    </select>
 
                   <div class="modal-button">
                     <button
@@ -4568,5 +4590,38 @@
 
     <!-- script js -->
     <script src="./assets/js/script.js"></script>
+    <script>
+// Function to handle the selection with custom active classes
+function handleSelection(event, categoryClass, activeClass) {
+  // Remove the custom active class from all items in the same category
+  document.querySelectorAll(`.${categoryClass} .${activeClass}`).forEach(item => {
+    item.classList.remove(activeClass);
+  });
+  
+  // Add the custom active class to the clicked element
+  event.target.classList.add(activeClass);
+  
+  // Store the selected value (optional)
+  const selectedValue = event.target.getAttribute('data-value');
+  console.log(`Selected ${categoryClass}: ${selectedValue}`);
+}
+
+// Attach event listeners for size options
+document.querySelectorAll('.size-options a').forEach(item => {
+  item.addEventListener('click', event => handleSelection(event, 'size-options', 'activesize'));
+});
+
+// Attach event listeners for color1 options
+document.querySelectorAll('.color1-options a').forEach(item => {
+  item.addEventListener('click', event => handleSelection(event, 'color1-options', 'activecolor1'));
+});
+
+// Attach event listeners for color2 options
+document.querySelectorAll('.color2-options a').forEach(item => {
+  item.addEventListener('click', event => handleSelection(event, 'color2-options', 'activecolor2'));
+});
+
+
+    </script>
   </body>
 </html>
