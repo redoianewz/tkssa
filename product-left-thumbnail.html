@@ -3696,27 +3696,32 @@ const data = {
 
 });
 
-document.getElementById('testpro').addEventListener('click', function() {
- fetch('https://script.google.com/macros/s/AKfycbxyT23Gppshu_XM5vRd1GBOPi8tVpZUJXH-lfXcB5MyLUyUmexhkPNOBdrR1LESJ9K6Eg/exec', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $('#testpro').on('click', function() {
+    $.ajax({
+      url: 'https://script.google.com/macros/s/AKfycbzj-mS9xDt-yh9M1sq8jbHDJ6F-SlMLsqsIlu45089NLbKz-Adq301ywzTyhm4ZkTTFtQ/exec',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
         selectedSize: "L",
         selectedColor1: "MOHAMED",
         selectedColor2: "REDA",
         fullName: "John Doe",
         phone: "1234567890",
         city: "New York"
-    })
-})
-.then(response => response.text())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
+      }),
+      success: function(response) {
+        console.log("Success:", response);
+      },
+      error: function(xhr, status, error) {
+        console.error("Error:", error);
+      }
+    });
+  });
+</script>
 
-});
-
-    </script>
   </body>
 </html>
