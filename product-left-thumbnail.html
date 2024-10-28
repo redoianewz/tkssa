@@ -3692,17 +3692,23 @@ const data = {
     phone: '0721714283'
 };
 
-fetch('https://script.google.com/macros/s/AKfycbxlvGAi8nm3vgnwZqqoEzFbXxDjHHI3TfMrGbMuO5-UIxsw4KL99QAe3yNl_r3A6wWiLg/exec', {
+fetch('https://script.google.com/macros/s/AKfycbxOvZijxW7G1DUUspznBhZQiqPD77YJ1si2UL2O7uJ8Oe8sdtIKXpowGgtuNdcBjHsVyQ/exec', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ yourKey: 'yourValue' })
+    body: JSON.stringify({
+        selectedSize: "L",
+        selectedColor1: "MOHAMED",
+        selectedColor2: "REDA",
+        fullName: "John Doe",
+        phone: "1234567890",
+        city: "New York"
+    })
 })
-.then(response => response.json())
+.then(response => response.text())
 .then(data => console.log(data))
 .catch(error => console.error('Error:', error));
-
 
 
 });
