@@ -1952,7 +1952,7 @@
                                   
                                   <div class="button-group mt-0">
                                     <div class="note-box product-packege">                    
-                                        <button class="btn btn-md bg-dark cart-button text-white w-100"id="testpro">
+                                        <button class="btn btn-md bg-dark cart-button text-white w-100" type="submit">
                                             اشتري الان
                                         </button>
                                     </div>
@@ -3679,49 +3679,29 @@
         document.querySelectorAll('.color-options-2 a').forEach(item => {
           item.addEventListener('click', event => selectColor(event, 'color-options-2', 'selectedColor2'));
         });
-        
-     document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-    const formData = new FormData(this);
-const data = {
-    selectedSize: 'XL',
-    selectedColor1: 'gronna',
-    selectedColor2: 'noir',
-    fullName: 'RERDA',
-    phone: '0721714283'
-};
+            const formData = new FormData(this);
+            const data = {
+                selectedSize: document.getElementById('selectedSize').textContent,
+                selectedColor1: document.getElementById('selectedColor1').textContent,
+                selectedColor2: document.getElementById('selectedColor2').textContent,
+                fullName: formData.get('fullName'),
+                phone: formData.get('phone'),
+                city: formData.get('city')
+            };
 
-
-
-});
-
+            // write this order in file orderData.json
+            fetch('orderData.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+        });
 
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  $('#testpro').on('click', function() {
-    $.ajax({
-      url: 'https://script.google.com/macros/s/AKfycbzj-mS9xDt-yh9M1sq8jbHDJ6F-SlMLsqsIlu45089NLbKz-Adq301ywzTyhm4ZkTTFtQ/exec',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        selectedSize: "L",
-        selectedColor1: "MOHAMED",
-        selectedColor2: "REDA",
-        fullName: "John Doe",
-        phone: "1234567890",
-        city: "New York"
-      }),
-      success: function(response) {
-        console.log("Success:", response);
-      },
-      error: function(xhr, status, error) {
-        console.error("Error:", error);
-      }
-    });
-  });
-</script>
-
   </body>
 </html>
