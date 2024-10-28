@@ -3692,18 +3692,16 @@ const data = {
     phone: '0721714283'
 };
 
-fetch('https://script.google.com/macros/s/AKfycbxCYK2hOUWXONmHNKmoFLB7sM4NZptY2K92gs2VaLRfe9dOIUsEzKRIyixWrumokzyJKg/exec', {
+fetch('https://script.google.com/macros/s/AKfycbxlvGAi8nm3vgnwZqqoEzFbXxDjHHI3TfMrGbMuO5-UIxsw4KL99QAe3yNl_r3A6wWiLg/exec', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({ yourKey: 'yourValue' })
 })
 .then(response => response.json())
-.then(result => console.log(result))
+.then(data => console.log(data))
 .catch(error => console.error('Error:', error));
-
-
 
 
 
