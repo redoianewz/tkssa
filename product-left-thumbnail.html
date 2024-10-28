@@ -3678,30 +3678,64 @@
         
         document.querySelectorAll('.color-options-2 a').forEach(item => {
           item.addEventListener('click', event => selectColor(event, 'color-options-2', 'selectedColor2'));
-        });
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-            const data = {
-                selectedSize: document.getElementById('selectedSize').textContent,
-                selectedColor1: document.getElementById('selectedColor1').textContent,
-                selectedColor2: document.getElementById('selectedColor2').textContent,
-                fullName: formData.get('fullName'),
-                phone: formData.get('phone'),
-                city: formData.get('city')
-            };
-
-            // write this order in file orderData.json
-            fetch('orderData.json', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-        });
+        });       
 
     </script>
+ <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+    const testdata = {
+        apiKey: "AIzaSyB5tmBeP2ADuGSaRDb-P_AlxJqhl7HpmSQ",
+        authDomain: "cheekorder-a82d0.firebaseapp.com",
+        databaseURL: "https://cheekorder-a82d0-default-rtdb.firebaseio.com",
+        projectId: "cheekorder-a82d0",
+        storageBucket: "cheekorder-a82d0.appspot.com",
+        messagingSenderId: "493048608688",
+        appId: "1:493048608688:web:d33e4c7d82ff2ed4de8875",
+        measurementId: "G-BHEHBW8YNX"
+    };
+
+    firebase.initializeApp(testdata);
+    const database = firebase.database();
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        // التحقق من وجود القيم في المتغيرات
+        const selectedSize = document.getElementById('selectedSize')?.textContent || '';
+        const selectedColor1 = document.getElementById('selectedColor1')?.textContent || '';
+        const selectedColor2 = document.getElementById('selectedColor2')?.textContent || '';
+
+        // التأكد من أن البيانات غير فارغة
+        if (!selectedSize || !selectedColor1 || !selectedColor2) {
+            alert('يرجى التأكد من تحديد جميع الخيارات.');
+            return;
+        }
+
+        const data = {
+            selectedSize: selectedSize,
+            selectedColor1: selectedColor1,
+            selectedColor2: selectedColor2,
+            fullName: formData.get('fullName'),
+            phone: formData.get('phone'),
+            city: formData.get('city')
+        };
+
+        // إضافة البيانات إلى Firebase
+        database.ref('orders').push(data)
+            .then(() => {
+                alert('تم إرسال الطلب بنجاح!');
+                // التوجيه إلى صفحة "thank you" بعد الإرسال الناجح
+                window.location.href = 'thankyou.html';  // استبدل 'thankyou.html' برابط الصفحة المطلوبة
+            })
+            .catch(error => {
+                console.error('حدث خطأ أثناء الإرسال:', error);
+            });
+    });
+</script>
+
   </body>
 </html>
