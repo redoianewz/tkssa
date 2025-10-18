@@ -1841,7 +1841,7 @@ src="https://www.facebook.com/tr?id=920753765633558&ev=PageView&noscript=1"
             // اختياري: تحويل لصفحة شكر
             const name = formData.get('fullName') || '';
             const phone = formData.get('phone') || '';
-             window.location.href = `/thankyou?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
+             window.location.href = `/thankyou/completed?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
           } catch (err) {
             console.error(err);
             alert("خطأ في الشبكة، حاول مجددًا.");
