@@ -689,11 +689,8 @@ src="https://www.facebook.com/tr?id=920753765633558&ev=PageView&noscript=1"
         // Update detail name
         document.getElementById("detailNameValue").textContent = name;
 
-        // Update WhatsApp button link with phone if available
-        const whatsappBtn = document.getElementById("whatsappBtn");
-        if (phone) {
-            whatsappBtn.href = `https://wa.me/${phone.replace(/\D/g, '')}?text=مرحباً، أود الاستفسار عن طلبي. رقم الهاتف المسجل هو: ${formattedPhone}`;
-        }
+     
+     
 
         console.log("[v2] Thank you page loaded with:", {
           name: name,
